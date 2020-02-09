@@ -23,13 +23,13 @@ android {
         applicationId "com.hdmoviesku.fullhdmovies"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         manifestPlaceholders = [
-                onesignal_app_id               : 'd1159bfe-6c73-47e4-9214-3efbf46fb1b9',
+                onesignal_app_id               : '881c49b1-0388-4dce-8c33-e4ea5e661ec9',
                 // Project number pulled from dashboard, local value is ignored.
                 onesignal_google_project_number: 'REMOTE'
         ]
