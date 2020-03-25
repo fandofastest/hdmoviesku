@@ -15,6 +15,8 @@ import com.hdmoviesku.fullhdmovies.R;
 import com.hdmoviesku.fullhdmovies.fullhdmovies_model.CommonModels;
 import com.hdmoviesku.fullhdmovies.fullhdmovies_utl.ItemAnimation;
 import com.squareup.picasso.Picasso;
+import com.startapp.android.publish.adsCommon.StartAppAd;
+import com.startapp.android.publish.adsCommon.VideoListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,10 +60,26 @@ public class CommonGridAdapter extends RecyclerView.Adapter<CommonGridAdapter.Or
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(ctx,DetailsActivity.class);
-                intent.putExtra("vType",obj.getVideoType());
-                intent.putExtra("id",obj.getId());
-                ctx.startActivity(intent);
+
+
+                StartAppAd startAppAd = new StartAppAd(ctx);
+
+                startAppAd.loadAd(StartAppAd.AdMode.REWARDED_VIDEO);
+
+                startAppAd.setVideoListener(new VideoListener() {
+                    @Override
+                    public void onVideoCompleted() {
+                        Intent intent=new Intent(ctx,DetailsActivity.class);
+                        intent.putExtra("vType",obj.getVideoType());
+                        intent.putExtra("id",obj.getId());
+                        ctx.startActivity(intent);
+
+
+                    }
+                });
+
+
+
 
             }
         });

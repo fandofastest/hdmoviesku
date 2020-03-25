@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +16,14 @@ import com.balysv.materialripple.MaterialRippleLayout;
 import com.hdmoviesku.fullhdmovies.DetailsActivity;
 import com.hdmoviesku.fullhdmovies.R;
 import com.hdmoviesku.fullhdmovies.fullhdmovies_model.CommonModels;
+import com.hdmoviesku.fullhdmovies.fullhdmovies_utl.ApiResources;
 import com.hdmoviesku.fullhdmovies.fullhdmovies_utl.ItemAnimation;
 import com.squareup.picasso.Picasso;
+import com.startapp.android.publish.adsCommon.Ad;
+import com.startapp.android.publish.adsCommon.StartAppAd;
+import com.startapp.android.publish.adsCommon.VideoListener;
+import com.startapp.android.publish.adsCommon.adListeners.AdDisplayListener;
+import com.startapp.android.publish.adsCommon.adListeners.AdEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,12 +69,69 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.Origin
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(ctx, DetailsActivity.class);
-                intent.putExtra("vType",obj.getVideoType());
-                intent.putExtra("id",obj.getId());
+                if (ApiResources.startappstatus.equals("1")){
 
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                ctx.startActivity(intent);
+                    StartAppAd startAppAd = new StartAppAd(ctx);
+                    startAppAd.showAd(new AdDisplayListener() {
+                        @Override
+                        public void adHidden(Ad ad) {
+
+
+
+
+                            Intent intent=new Intent(ctx, DetailsActivity.class);
+                            intent.putExtra("vType",obj.getVideoType());
+                            intent.putExtra("id",obj.getId());
+
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            ctx.startActivity(intent);
+
+
+                        }
+
+                        @Override
+                        public void adDisplayed(Ad ad) {
+
+                        }
+
+                        @Override
+                        public void adClicked(Ad ad) {
+
+                        }
+
+                        @Override
+                        public void adNotDisplayed(Ad ad) {
+                            Intent intent=new Intent(ctx, DetailsActivity.class);
+                            intent.putExtra("vType",obj.getVideoType());
+                            intent.putExtra("id",obj.getId());
+
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            ctx.startActivity(intent);
+
+                        }
+                    });
+
+
+
+                }else {
+                    Intent intent=new Intent(ctx, DetailsActivity.class);
+                    intent.putExtra("vType",obj.getVideoType());
+                    intent.putExtra("id",obj.getId());
+
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    ctx.startActivity(intent);
+
+
+                }
+
+
+
+
+
+
+
+
+
 
             }
         });

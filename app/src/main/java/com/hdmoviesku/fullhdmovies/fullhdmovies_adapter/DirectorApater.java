@@ -22,6 +22,8 @@ import com.hdmoviesku.fullhdmovies.R;
 import com.hdmoviesku.fullhdmovies.fullhdmovies_model.EpiModel;
 import com.hdmoviesku.fullhdmovies.fullhdmovies_model.SubtitleModel;
 import com.squareup.picasso.Picasso;
+import com.startapp.android.publish.adsCommon.StartAppAd;
+import com.startapp.android.publish.adsCommon.VideoListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,8 +152,8 @@ public class DirectorApater extends RecyclerView.Adapter<DirectorApater.Original
                             //Toast.makeText(ctx, "cast:"+castSession, Toast.LENGTH_SHORT).show();
                             if (!castSession) {
 
-
                                 new DetailsActivity().iniMoviePlayer(obj.getStreamURL(),obj.getServerType(),ctx);
+
 
 
                             } else {

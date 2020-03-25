@@ -28,6 +28,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.ixidev.gdpr.GDPRChecker;
 import com.hdmoviesku.fullhdmovies.fullhdmovies_utl.ApiResources;
+import com.startapp.android.publish.adsCommon.AutoInterstitialPreferences;
 import com.startapp.android.publish.adsCommon.StartAppAd;
 import com.startapp.android.publish.adsCommon.StartAppSDK;
 import com.startapp.android.publish.adsCommon.adListeners.AdDisplayListener;
@@ -199,7 +200,10 @@ public class SplashscreenActivity extends AppCompatActivity {
                             "pas",
                             System.currentTimeMillis(),
                             true);
-                    StartAppAd.disableSplash();
+                    StartAppAd.setAutoInterstitialPreferences(
+                            new AutoInterstitialPreferences()
+                                    .setSecondsBetweenAds(300)
+                    );
 
                 } catch (JSONException e) {
                     Log.e("json", "ERROR");

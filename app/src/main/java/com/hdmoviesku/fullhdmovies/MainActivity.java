@@ -1,5 +1,6 @@
 package com.hdmoviesku.fullhdmovies;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -56,9 +57,12 @@ import com.hdmoviesku.fullhdmovies.fullhdmovies_utl.ApiResources;
 import com.hdmoviesku.fullhdmovies.fullhdmovies_utl.Constants;
 import com.hdmoviesku.fullhdmovies.fullhdmovies_utl.SpacingItemDecoration;
 import com.hdmoviesku.fullhdmovies.fullhdmovies_utl.Tools;
+import com.startapp.android.publish.adsCommon.StartAppAd;
+
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Serializable {
@@ -98,6 +102,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ApiResources.startappstatus.equals("1")){
+
+            StartAppAd.showSplash(this, savedInstanceState);
+
+        }
+
+
+
+
+
 
         navMenuStyle = Constants.NAV_MENU_STYLE;
 
@@ -544,6 +559,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         alertDialog.show();
     }
+
 
 
 
